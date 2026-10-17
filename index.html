@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignalPath — Manual & Automated Job Clarity</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-mark">◆</span>
+        <span class="logo-text">SignalPath</span>
+      </div>
+      <nav class="nav">
+        <a href="#pricing">Pricing</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#manual">Manual</a>
+        <a href="#automated">Automated</a>
+        <a href="#tools">Tools</a>
+      </nav>
+      <div class="header-auth">
+        <button id="login-btn" class="btn primary small">Log in</button>
+        <div id="user-menu" class="user-menu" hidden>
+          <span id="user-name-display"></span>
+          <span id="plan-badge" class="plan-badge">Free</span>
+          <button id="logout-btn" class="btn secondary small">Log out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal" hidden>
+    <div class="modal-content card">
+      <h3>Log in</h3>
+      <p class="muted">Name and email stay in this browser only.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-name">Full name</label>
+          <input type="text" id="login-name" required placeholder="Alex Rivera">
+        </div>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required placeholder="alex@example.com">
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Continue</button>
+          <button type="button" id="cancel-login" class="btn secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Upgrade Modal -->
+  <div id="upgrade-modal" class="modal" hidden>
+    <div class="modal-content card">
+      <h3>Upgrade to Automated</h3>
+      <p class="muted">Choose a plan. This is a local demo — no real payment is processed.</p>
+      <div class="pricing-options">
+        <button class="plan-option" data-plan="monthly">
+          <strong>Monthly</strong>
+          <span>$19 / month</span>
+        </button>
+        <button class="plan-option" data-plan="yearly">
+          <strong>Yearly</strong>
+          <span>$149 / year</span>
+          <em>Save ~35%</em>
+        </button>
+        <button class="plan-option" data-plan="lifetime">
+          <strong>One-time</strong>
+          <span>$299 lifetime</span>
+        </button>
+      </div>
+      <button id="cancel-upgrade" class="btn secondary" style="margin-top:1rem;width:100%;">Cancel</button>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badge">Manual free · Automated paid</div>
+        <h1>Clarity for every application.</h1>
+        <p class="hero-sub">Track manually for free, or upgrade to automated resume delivery with ATS vs. human email detection.</p>
+        <div class="hero-actions">
+          <a href="#manual" class="btn primary">Start free (Manual)</a>
+          <a href="#pricing" class="btn secondary">See Automated plans</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Pricing</h2>
+          <p class="section-lead">Manual is free forever. Automated unlocks resume delivery simulation and delivery-method insights.</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="card pricing-card">
+            <h3>Manual</h3>
+            <div class="price">Free</div>
+            <ul>
+              <li>Application tracker</li>
+              <li>Human signal builder</li>
+              <li>Resume upload (local)</li>
+              <li>Legitimacy & skills tools</li>
+            </ul>
+            <a href="#manual" class="btn secondary">Use Manual</a>
+          </div>
+          <div class="card pricing-card featured">
+            <h3>Automated</h3>
+            <div class="price">From $19/mo</div>
+            <ul>
+              <li>Everything in Manual</li>
+              <li>Simulated resume delivery to company sites</li>
+              <li>ATS / AI keyword vs. human email detection</li>
+              <li>Email address when available</li>
+              <li>Delivery confidence notes</li>
+            </ul>
+            <button id="upgrade-from-pricing" class="btn primary">Upgrade</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Dashboard</h2>
+          <p class="section-lead" id="welcome-text">Log in to personalize.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <strong id="app-count">0</strong>
+            <span>Applications tracked</span>
+          </div>
+          <div class="stat-card">
+            <strong id="signal-status">Not set</strong>
+            <span>Human signal</span>
+          </div>
+          <div class="stat-card">
+            <strong id="resume-status">None</strong>
+            <span>Resume</span>
+          </div>
+          <div class="stat-card">
+            <strong id="plan-status">Free</strong>
+            <span>Current plan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manual -->
+    <section id="manual" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Manual (Free)</h2>
+          <p class="section-lead">Track applications yourself. No automation.</p>
+        </div>
+
+        <form id="app-form" class="card form-card">
+          <div class="form-row">
+            <div class="field">
+              <label for="company">Company</label>
+              <input type="text" id="company" required placeholder="Acme Corp">
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <input type="text" id="role" required placeholder="Product Manager">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="applied">Date applied</label>
+              <input type="date" id="applied" required>
+            </div>
+            <div class="field">
+              <label for="source">Source</label>
+              <select id="source">
+                <option value="linkedin">LinkedIn</option>
+                <option value="indeed">Indeed</option>
+                <option value="company">Company site</option>
+                <option value="referral">Referral</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn primary">Add application</button>
+        </form>
+
+        <div id="app-list" class="app-list"></div>
+
+        <div class="card" style="margin-top:2rem;">
+          <h3>Human Signal</h3>
+          <div class="grid-2" style="margin-top:1rem;">
+            <div>
+              <div class="field">
+                <label for="headline">Headline</label>
+                <input type="text" id="headline" placeholder="Ops leader who cut wait times 20%">
+              </div>
+              <div class="field">
+                <label for="proof">Proof of work</label>
+                <textarea id="proof" rows="3" placeholder="Reduced average time from 42 to 28 minutes..."></textarea>
+              </div>
+              <button id="save-signal" class="btn primary">Save signal</button>
+            </div>
+            <div id="signal-preview" class="signal-preview">
+              <p class="muted">Preview appears here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+          <h3>Resume (local only)</h3>
+          <div class="field">
+            <label for="resume-file">Upload resume</label>
+            <input type="file" id="resume-file" accept=".pdf,.doc,.docx,.txt">
+          </div>
+          <div id="resume-info" class="muted">No resume uploaded.</div>
+          <button id="clear-resume" class="btn secondary" style="margin-top:0.75rem;" hidden>Remove</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automated -->
+    <section id="automated" class="section alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Automated</h2>
+          <p class="section-lead">Simulate resume delivery and see whether it likely hits an ATS/AI keyword filter or a human email.</p>
+        </div>
+
+        <div id="automated-locked" class="card locked-card">
+          <h3>Automated is a paid feature</h3>
+          <p class="muted">Upgrade to unlock simulated delivery, ATS vs. email detection, and email addresses when available.</p>
+          <button id="upgrade-from-locked" class="btn primary" style="margin-top:1rem;">View plans</button>
+        </div>
+
+        <div id="automated-unlocked" hidden>
+          <form id="auto-form" class="card form-card">
+            <div class="form-row">
+              <div class="field">
+                <label for="auto-company">Company</label>
+                <input type="text" id="auto-company" required placeholder="Acme Corp">
+              </div>
+              <div class="field">
+                <label for="auto-role">Role</label>
+                <input type="text" id="auto-role" required placeholder="Software Engineer">
+              </div>
+            </div>
+            <div class="field">
+              <label for="auto-url">Company career page URL (optional)</label>
+              <input type="url" id="auto-url" placeholder="https://company.com/careers">
+            </div>
+            <button type="submit" class="btn primary">Simulate resume delivery</button>
+          </form>
+          <div id="auto-result" class="result-box" hidden></div>
+          <div id="auto-history" class="app-list" style="margin-top:1.5rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tools</h2>
+          <p class="section-lead">Available on both plans.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Job Legitimacy Check</h3>
+            <div class="field">
+              <label for="job-text">Paste job posting</label>
+              <textarea id="job-text" rows="5" placeholder="Paste the job posting..."></textarea>
+            </div>
+            <button id="check-btn" class="btn primary">Check</button>
+            <div id="check-result" class="result-box" hidden></div>
+          </div>
+          <div class="card">
+            <h3>Skills Gap</h3>
+            <div class="field">
+              <label for="target-role">Target role</label>
+              <select id="target-role">
+                <option value="pm">Product Manager</option>
+                <option value="ops">Operations Manager</option>
+                <option value="data">Data Analyst</option>
+              </select>
+            </div>
+            <button id="gap-btn" class="btn primary">Show gap</button>
+            <div id="gap-result" class="result-box" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">◆</span>
+        <span>SignalPath</span>
+      </div>
+      <p>Manual free · Automated paid. All data stays local in this demo.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
