@@ -90,10 +90,24 @@ function updatePlanUI() {
 }
 
 function openUpgrade() { upgradeModal.hidden = false; }
+function closeUpgrade() { upgradeModal.hidden = true; }
+
 upgradeFromPricing.addEventListener('click', openUpgrade);
 upgradeFromLocked.addEventListener('click', openUpgrade);
-cancelUpgrade.addEventListener('click', () => { upgradeModal.hidden = true; });
-upgradeModal.addEventListener('click', (e) => { if (e.target === upgradeModal) upgradeModal.hidden = true; });
+cancelUpgrade.addEventListener('click', closeUpgrade);
+
+// Click outside modal to close
+upgradeModal.addEventListener('click', (e) => {
+  if (e.target === upgradeModal) closeUpgrade();
+});
+
+// Escape key closes any open modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (!upgradeModal.hidden) closeUpgrade();
+    if (!loginModal.hidden) loginModal.hidden = true;
+  }
+});
 
 document.querySelectorAll('.plan-option').forEach(btn => {
   btn.addEventListener('click', () => {
