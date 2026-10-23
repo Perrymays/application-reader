@@ -96,6 +96,17 @@ upgradeFromPricing.addEventListener('click', openUpgrade);
 upgradeFromLocked.addEventListener('click', openUpgrade);
 cancelUpgrade.addEventListener('click', closeUpgrade);
 
+// Test Paid Features button - unlocks automated and closes modal
+document.getElementById('test-paid').addEventListener('click', () => {
+  savePlan('monthly');
+  closeUpgrade();
+   document.getElementById('automated').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Continue with Free - just closes the modal so the full site is useable
+cancelUpgrade.addEventListener('click', () => {
+  closeUpgrade();
+
 // Click outside modal to close
 upgradeModal.addEventListener('click', (e) => {
   if (e.target === upgradeModal) closeUpgrade();
@@ -172,26 +183,106 @@ form.addEventListener('submit', (e) => {
   renderApps();
 });
 
-// Human Signal
+// Human Signal + Video
 const headlineEl = document.getElementById('headline');
 const proofEl = document.getElementById('proof');
 const previewEl = document.getElementById('signal-preview');
 const saveSignalBtn = document.getElementById('save-signal');
+const startRecordBtn = document.getElementById('start-record');
+const stopRecordBtn = document.getElementById('stop-record');
+const videoUpload = document.getElementById('video-upload');
+const videoPreview = document.getElementById('video-preview');
+const recordingStatus = document.getElementById('recording-status');
+const clearVideoBtn = document.getElementById('clear-video');
+
+let mediaRecorder = null;
+let recordedChunks = [];
+let currentVideoUrl = null;
 
 function renderSignal() {
   const data = loadSignal();
-  if (!data.headline && !data.proof) {
+  let html = '';
+  if (!data.headline && !data.proof && !currentVideoUrl) {
     previewEl.innerHTML = '<p class="muted">Preview appears here.</p>';
     return;
   }
-  previewEl.innerHTML = `<h4>${data.headline || ''}</h4><p>${data.proof || ''}</p>`;
+  if (data.headline) html += `<h4>${data.headline}</h4>`;
+  if (data.proof) html += `<p>${data.proof}</p>`;
+  if (currentVideoUrl) {
+    html += `<video src="${currentVideoUrl}" controls style="width:100%;max-height:180px;border-radius:8px;margin-top:0.75rem;background:#000;"></video>`;
+  }
+  previewEl.innerHTML = html || '<p class="muted">Preview appears here.</p>';
 }
+
 function loadSignalIntoForm() {
   const data = loadSignal();
   if (data.headline) headlineEl.value = data.headline;
   if (data.proof) proofEl.value = data.proof;
   renderSignal();
 }
+
+function setVideo(url) {
+  if (currentVideoUrl) URL.revokeObjectURL(currentVideoUrl);
+  currentVideoUrl = url;
+  if (url) {
+    videoPreview.src = url;
+    videoPreview.style.display = 'block';
+    clearVideoBtn.hidden = false;
+  } else {
+    videoPreview.src = '';
+    videoPreview.style.display = 'none';
+    clearVideoBtn.hidden = true;
+  }
+  renderSignal();
+}
+
+startRecordBtn.addEventListener('click', async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    recordedChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, { type: 'video/webm' });
+      const url = URL.createObjectURL(blob);
+      setVideo(url);
+      stream.getTracks().forEach(track => track.stop());
+      recordingStatus.textContent = 'Recording saved.';
+      recordingStatus.classList.remove('recording');
+    };
+    mediaRecorder.start();
+    startRecordBtn.hidden = true;
+    stopRecordBtn.hidden = false;
+    recordingStatus.textContent = 'Recording… click Stop when finished.';
+    recordingStatus.classList.add('recording');
+  } catch (err) {
+    recordingStatus.textContent = 'Camera access denied or unavailable.';
+  }
+});
+
+stopRecordBtn.addEventListener('click', () => {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.stop();
+  }
+  startRecordBtn.hidden = false;
+  stopRecordBtn.hidden = true;
+});
+
+videoUpload.addEventListener('change', () => {
+  const file = videoUpload.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    setVideo(url);
+    recordingStatus.textContent = `Uploaded: ${file.name}`;
+  }
+});
+
+clearVideoBtn.addEventListener('click', () => {
+  setVideo(null);
+  videoUpload.value = '';
+  recordingStatus.textContent = '';
+});
+
 saveSignalBtn.addEventListener('click', () => {
   saveSignal({ headline: headlineEl.value.trim(), proof: proofEl.value.trim() });
   renderSignal();

@@ -76,8 +76,8 @@
           <span>$299 lifetime</span>
         </button>
       </div>
-      <button id="test-paid" class="btn primary" style="margin-top:0.75rem;width:100%;">Test Paid Features</button>
-      <button id="cancel-upgrade" class="btn secondary" style="margin-top:0.5rem;width:100%;">Continue with Free</button>
+      <button id="test-paid" class="btn primary" style="margin-top:0.75rem;width:100%;">Test Paid Features (Unlock Automated)</button>
+      <button id="cancel-upgrade" class="btn secondary" style="margin-top:0.5rem;width:100%;">Continue with Free (Close & use app)</button>
     </div>
   </div>
 
@@ -199,6 +199,7 @@
 
         <div class="card" style="margin-top:2rem;">
           <h3>Human Signal</h3>
+          <p class="muted" style="margin-bottom:1rem;font-size:0.95rem;">Optional short video helps you stand out. Most recruiters prefer under 60 seconds.</p>
           <div class="grid-2" style="margin-top:1rem;">
             <div>
               <div class="field">
@@ -209,7 +210,23 @@
                 <label for="proof">Proof of work</label>
                 <textarea id="proof" rows="3" placeholder="Reduced average time from 42 to 28 minutes..."></textarea>
               </div>
-              <button id="save-signal" class="btn primary">Save signal</button>
+
+              <div class="video-section">
+                <label>Optional intro video</label>
+                <div class="video-controls">
+                  <button type="button" id="start-record" class="btn secondary small">Record with webcam</button>
+                  <button type="button" id="stop-record" class="btn secondary small" hidden>Stop recording</button>
+                  <label class="btn secondary small" style="cursor:pointer;">
+                    Upload video
+                    <input type="file" id="video-upload" accept="video/*" hidden>
+                  </label>
+                </div>
+                <div id="recording-status" class="muted" style="font-size:0.85rem;margin-top:0.5rem;"></div>
+                <video id="video-preview" controls style="width:100%;max-height:200px;border-radius:8px;margin-top:0.75rem;display:none;background:#000;"></video>
+                <button type="button" id="clear-video" class="btn secondary small" style="margin-top:0.5rem;" hidden>Remove video</button>
+              </div>
+
+              <button id="save-signal" class="btn primary" style="margin-top:1rem;">Save signal</button>
             </div>
             <div id="signal-preview" class="signal-preview">
               <p class="muted">Preview appears here.</p>
