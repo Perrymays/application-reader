@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+  <title>CAREER PULSE — Manual & Automated Job Clarity</title>
+  <link rel="stylesheet" href="styles.css">
+=======
+  <title>SignalPath — Manual & Automated Job Clarity</title>
+  <link rel="stylesheet" href="style.css">
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-mark">◆</span>
+<<<<<<< HEAD
+        <span class="logo-text">CAREER PULSE</span>
+      </div>
+      <button id="burger" class="burger" aria-label="Menu">☰</button>
+      <nav class="nav" id="main-nav">
+=======
+        <span class="logo-text">SignalPath</span>
+      </div>
+      <nav class="nav">
+        <a href="#pricing">Pricing</a>
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+        <a href="#dashboard">Dashboard</a>
+        <a href="#manual">Manual</a>
+        <a href="#automated">Automated</a>
+        <a href="#tools">Tools</a>
+<<<<<<< HEAD
+        <a href="#" id="open-pricing">Pricing</a>
+      </nav>
+      <div class="header-auth">
+        <button id="open-premium" class="btn secondary small" onclick="var m=document.getElementById('premium-window');m.hidden=false;m.style.display='flex';m.classList.remove('hidden');">Premium</button>
+=======
+      </nav>
+      <div class="header-auth">
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+        <button id="login-btn" class="btn primary small">Log in</button>
+        <div id="user-menu" class="user-menu" hidden>
+          <span id="user-name-display"></span>
+          <span id="plan-badge" class="plan-badge">Free</span>
+          <button id="logout-btn" class="btn secondary small">Log out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal" hidden>
+    <div class="modal-content card">
+      <h3>Log in</h3>
+      <p class="muted">Name and email stay in this browser only.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-name">Full name</label>
+          <input type="text" id="login-name" required placeholder="Alex Rivera">
+        </div>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required placeholder="alex@example.com">
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Continue</button>
+          <button type="button" id="cancel-login" class="btn secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<<<<<<< HEAD
+  <!-- Premium Window -->
+  <div id="premium-window" class="modal" hidden onclick="if(event.target===this){this.hidden=true;this.style.display='none';this.classList.add('hidden');}">
+    <div class="modal-content card premium-card">
+      <h3>Premium</h3>
+      <p class="muted">Everything a job seeker needs in one place.</p>
+      <ul class="premium-list">
+        <li>Application status tracking (Applied → Offer)</li>
+        <li>Salary range estimates for the role</li>
+        <li>Interview prep questions and practice notes</li>
+        <li>Follow-up templates and reminder dates</li>
+        <li>Company research notes tied to each application</li>
+        <li>Networking message scripts</li>
+        <li>Rejection feedback log</li>
+        <li>Time-to-hire estimates</li>
+        <li>Remote / hybrid clarity notes</li>
+        <li>Benefits comparison</li>
+        <li>AI resume / CV builder with job-description tailoring</li>
+        <li>Word-check before submit</li>
+      </ul>
+      <div class="form-actions">
+        <button type="button" id="premium-upgrade" class="btn primary">Upgrade</button>
+        <button type="button" id="close-premium" class="btn secondary" onclick="var m=document.getElementById('premium-window');m.hidden=true;m.style.display='none';m.classList.add('hidden');">Close</button>
+      </div>
+    </div>
+  </div>
+  <div id="upgrade-modal" class="modal" hidden style="display:none;">
+    <div class="modal-content card">
+      <h3>Plans</h3>
+      <p class="muted">Manual is free. Automated unlocks resume delivery simulation.</p>
+      <div class="pricing-options">
+        <button type="button" class="plan-option" data-plan="monthly">
+          <strong>Monthly</strong>
+          <span>$19 / month</span>
+        </button>
+        <button type="button" class="plan-option" data-plan="yearly">
+=======
+  <!-- Upgrade Modal -->
+  <div id="upgrade-modal" class="modal" hidden>
+    <div class="modal-content card">
+      <h3>Upgrade to Automated</h3>
+      <p class="muted">Choose a plan to unlock Automated features. This is a local demo — no real payment is processed.</p>
+      <div class="pricing-options">
+        <button class="plan-option" data-plan="monthly">
+          <strong>Monthly</strong>
+          <span>$19 / month</span>
+        </button>
+        <button class="plan-option" data-plan="yearly">
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+          <strong>Yearly</strong>
+          <span>$149 / year</span>
+          <em>Save ~35%</em>
+        </button>
+<<<<<<< HEAD
+        <button type="button" class="plan-option" data-plan="lifetime">
+=======
+        <button class="plan-option" data-plan="lifetime">
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+          <strong>One-time</strong>
+          <span>$299 lifetime</span>
+        </button>
+      </div>
+<<<<<<< HEAD
+      <button type="button" id="test-paid" class="btn primary btn-block">Test Paid Features</button>
+      <button type="button" id="cancel-upgrade" class="btn secondary btn-block">Continue with Free</button>
+    </div>
+  </div>
+
+  <!-- Resume Builder Modal -->
+  <div id="resume-builder-modal" class="modal" hidden>
+    <div class="modal-content card resume-builder-card">
+      <h3>Build your resume</h3>
+      <p class="muted">All fields stay local. AI generation is a paid feature.</p>
+      <form id="resume-builder-form">
+        <div class="field">
+          <label for="rb-name">Full name</label>
+          <input type="text" id="rb-name" required placeholder="Alex Rivera">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="rb-email">Email</label>
+            <input type="email" id="rb-email" required placeholder="alex@example.com">
+          </div>
+          <div class="field">
+            <label for="rb-phone">Phone</label>
+            <input type="tel" id="rb-phone" placeholder="(555) 123-4567">
+          </div>
+        </div>
+        <div class="field">
+          <label for="rb-location">Location</label>
+          <input type="text" id="rb-location" placeholder="Austin, TX">
+        </div>
+        <div class="field">
+          <label for="rb-summary">Professional summary</label>
+          <textarea id="rb-summary" rows="3" placeholder="Results-driven operations manager with 8+ years..."></textarea>
+        </div>
+        <div class="field">
+          <label for="rb-experience">Experience (most recent first)</label>
+          <textarea id="rb-experience" rows="4" placeholder="Operations Manager, Acme Corp (2020–Present)&#10;• Reduced wait times 20%&#10;• Led team of 12"></textarea>
+        </div>
+        <div class="field">
+          <label for="rb-education">Education</label>
+          <textarea id="rb-education" rows="2" placeholder="B.S. Business Administration, University of Texas"></textarea>
+        </div>
+        <div class="field">
+          <label for="rb-skills">Skills (comma separated)</label>
+          <input type="text" id="rb-skills" placeholder="Process improvement, KPI ownership, Team leadership">
+        </div>
+        <div class="field">
+          <label for="rb-jobdesc">Job description to tailor for (optional, paid)</label>
+          <textarea id="rb-jobdesc" rows="4" placeholder="Paste the target job posting here..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Generate CV</button>
+          <button type="button" id="close-resume-builder" class="btn secondary">Cancel</button>
+        </div>
+      </form>
+      <div id="resume-output" class="resume-output" hidden></div>
+    </div>
+  </div>
+
+  <!-- Word Check Modal -->
+  <div id="wordcheck-modal" class="modal" hidden>
+    <div class="modal-content card">
+      <h3>Resume vs Job Description</h3>
+      <p class="muted">Compare key requirements before you submit.</p>
+      <div id="wordcheck-results" class="wordcheck-results"></div>
+      <div class="form-actions">
+        <button type="button" id="wordcheck-stop" class="btn secondary">Stop and revise</button>
+        <button type="button" id="wordcheck-continue" class="btn primary">Submit anyway</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="left-rail">
+      <div class="rail-photos">
+        <div class="feature-card">
+          <img src="assets/job1.jpg" alt="Smiling woman at laptop in home office" class="feature-img">
+          <div class="feature-caption">“I got the job!”</div>
+        </div>
+        <div class="feature-card">
+          <img src="assets/job2.jpg" alt="Smiling man at laptop in cafe" class="feature-img">
+          <div class="feature-caption">“I got the job!”</div>
+        </div>
+        <div class="feature-card">
+          <img src="assets/job6.jpg" alt="Smiling professional at laptop" class="feature-img">
+          <div class="feature-caption">“I got the job!”</div>
+        </div>
+        <div class="feature-card">
+          <img src="assets/job4.jpg" alt="Professional celebrating" class="feature-img">
+          <div class="feature-caption"></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard (most important first) -->
+      <section id="dashboard" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Dashboard</h2>
+            <p class="section-lead" id="welcome-text">Your applications and status at a glance.</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <strong id="app-count">0</strong>
+              <span>Applications tracked</span>
+            </div>
+            <div class="stat-card">
+              <strong id="signal-status">Not set</strong>
+              <span>Human signal</span>
+            </div>
+            <div class="stat-card">
+              <strong id="resume-status">None</strong>
+              <span>Resume</span>
+            </div>
+            <div class="stat-card">
+              <strong id="plan-status">Free</strong>
+              <span>Current plan</span>
+            </div>
+          </div>
+          <div id="dashboard-details" class="dashboard-details">
+            <div class="card">
+              <h3>Recent Applications</h3>
+              <div id="dash-apps" class="muted">None yet.</div>
+            </div>
+            <div class="card">
+              <h3>Human Signal</h3>
+              <div id="dash-signal" class="muted">Not set.</div>
+            </div>
+            <div class="card">
+              <h3>Latest Tool Results</h3>
+              <div id="dash-tools" class="muted">No checks run yet.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Manual: Application Tracker -->
+      <section id="manual" class="section alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>Track an application</h2>
+            <p class="section-lead">Log every job you apply to.</p>
+          </div>
+          <div class="card">
+            <form id="app-form">
+              <div class="form-row">
+                <div class="field">
+                  <label for="company">Company</label>
+                  <input type="text" id="company" required placeholder="Acme Corp">
+                </div>
+                <div class="field">
+                  <label for="role">Role</label>
+                  <input type="text" id="role" required placeholder="Product Manager">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="applied">Date applied</label>
+                  <input type="date" id="applied" required>
+                </div>
+                <div class="field">
+                  <label for="source">Source</label>
+                  <select id="source">
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="indeed">Indeed</option>
+                    <option value="company">Company site</option>
+                    <option value="referral">Referral</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="app-status">Status</label>
+                <select id="app-status">
+                  <option value="applied">Applied</option>
+                  <option value="screening">Screening</option>
+                  <option value="interview">Interview</option>
+                  <option value="offer">Offer</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </div>
+              <button type="submit" class="btn primary">Add application</button>
+            </form>
+            <div id="app-list" class="app-list app-list-spaced"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Human Signal -->
+      <section class="section">
+        <div class="container">
+          <div class="card">
+            <h3>Human Signal</h3>
+            <p class="muted signal-note">A short headline and proof of work help you stand out. Optional video under 60 seconds.</p>
+            <div class="grid-2 grid-spaced">
+              <div>
+                <div class="field">
+                  <label for="headline">Headline</label>
+                  <input type="text" id="headline" placeholder="Ops leader who cut wait times 20%">
+                </div>
+                <div class="field">
+                  <label for="proof">Proof of work</label>
+                  <textarea id="proof" rows="3" placeholder="Reduced average time from 42 to 28 minutes..."></textarea>
+                </div>
+                <div class="video-section">
+                  <label>Optional intro video</label>
+                  <div class="video-controls">
+                    <button type="button" id="start-record" class="btn secondary small">Record with webcam</button>
+                    <button type="button" id="stop-record" class="btn secondary small" hidden>Stop recording</button>
+                    <label class="btn secondary small file-label">
+                      Upload video
+                      <input type="file" id="video-upload" accept="video/*" hidden>
+                    </label>
+                  </div>
+                  <div id="recording-status" class="muted recording-status"></div>
+                  <video id="video-preview" controls class="video-preview"></video>
+                  <button type="button" id="clear-video" class="btn secondary small" hidden>Remove video</button>
+                </div>
+                <button id="save-signal" class="btn primary btn-spaced">Save signal</button>
+                <button type="button" id="reset-signal" class="btn secondary btn-spaced-sm">Reset</button>
+              </div>
+              <div id="signal-preview" class="signal-preview">
+                <p class="muted">Preview appears here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Build Resume -->
+      <section class="section alt">
+        <div class="container">
+          <div class="card">
+            <h3>Build your resume</h3>
+            <p class="muted signal-note">Paid feature. Provide your information and the AI will generate a professional CV. Optionally paste a job description to tailor it.</p>
+            <button type="button" id="open-resume-builder" class="btn primary">Build CV</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume Upload -->
+      <section class="section">
+        <div class="container">
+          <div class="card">
+            <h3>Resumes (up to 5)</h3>
+            <p class="muted">Name each resume for the job you’re applying to. Stored locally.</p>
+            <div class="field">
+              <label for="resume-name">Resume name (job or role)</label>
+              <input type="text" id="resume-name" placeholder="e.g. Acme Corp – Product Manager">
+            </div>
+            <div class="field">
+              <label for="resume-file">Choose file</label>
+              <input type="file" id="resume-file" accept=".pdf,.doc,.docx,.txt">
+            </div>
+            <button type="button" id="save-resume" class="btn primary">Save resume</button>
+            <div id="resume-list" class="resume-list"></div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="card">
+            <h3>Upload resume</h3>
+            <p class="muted">Stored locally in this browser only.</p>
+            <div class="field">
+              <label for="resume-file">Choose file</label>
+              <input type="file" id="resume-file" accept=".pdf,.doc,.docx,.txt">
+            </div>
+            <div id="resume-info" class="muted">No resume uploaded.</div>
+            <button id="clear-resume" class="btn secondary btn-spaced-sm" hidden>Remove</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Automated -->
+      <section id="automated" class="section alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>Automated delivery</h2>
+            <p class="section-lead">Simulate where your resume goes and see if it likely hits an ATS or a human.</p>
+          </div>
+          <div id="automated-locked" class="card locked-card">
+            <h3>Automated is a paid feature</h3>
+            <p class="muted">Upgrade to unlock simulated delivery, ATS vs. email detection, and email addresses when available.</p>
+            <button id="upgrade-from-locked" class="btn primary btn-spaced">View plans</button>
+          </div>
+          <div id="automated-unlocked" hidden>
+            <div class="card">
+              <form id="auto-form">
+                <div class="form-row">
+                  <div class="field">
+                    <label for="auto-company">Company</label>
+                    <input type="text" id="auto-company" required placeholder="Acme Corp">
+                  </div>
+                  <div class="field">
+                    <label for="auto-role">Role</label>
+                    <input type="text" id="auto-role" required placeholder="Software Engineer">
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="auto-url">Company career page URL (optional)</label>
+                  <input type="url" id="auto-url" placeholder="https://company.com/careers">
+                </div>
+                <button type="submit" class="btn primary">Simulate resume delivery</button>
+              </form>
+              <div id="auto-result" class="result-box" hidden></div>
+              <div id="auto-history" class="app-list app-list-spaced"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tools -->
+      <section id="tools" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Tools</h2>
+            <p class="section-lead">Check legitimacy and skill gaps before you apply.</p>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Job Legitimacy Check</h3>
+              <div class="field">
+                <label for="job-text">Paste job posting</label>
+                <textarea id="job-text" rows="5" placeholder="Paste the job posting..."></textarea>
+              </div>
+              <button id="check-btn" class="btn primary">Check</button>
+              <div id="check-result" class="result-box" hidden></div>
+            </div>
+            <div class="card">
+              <h3>Skills Gap</h3>
+              <div class="field">
+                <label for="target-role">Target role</label>
+                <select id="target-role">
+                  <option value="pm">Product Manager</option>
+                  <option value="ops">Operations Manager</option>
+                  <option value="data">Data Analyst</option>
+                </select>
+              </div>
+              <button id="gap-btn" class="btn primary">Show gap</button>
+              <div id="gap-result" class="result-box" hidden></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="section alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>What job seekers say</h2>
+            <p class="section-lead">Clarity instead of guessing.</p>
+          </div>
+          <div class="testimonials">
+            <div class="testimonial card">
+              <p>“I stopped applying blindly. The legitimacy check flagged two sketchy postings before I wasted time on them.”</p>
+              <div class="testimonial-author">
+                <strong>Maya R.</strong>
+                <span>Operations Manager</span>
+              </div>
+            </div>
+            <div class="testimonial card">
+              <p>“The human signal section helped me write one clear sentence about a real result. I used it in follow-ups and finally got replies.”</p>
+              <div class="testimonial-author">
+                <strong>James T.</strong>
+                <span>Product Analyst</span>
+              </div>
+            </div>
+            <div class="testimonial card">
+              <p>“Knowing whether something likely hit an ATS or a person changed how I followed up. Simple and useful.”</p>
+              <div class="testimonial-author">
+                <strong>Priya K.</strong>
+                <span>Data Analyst</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Right Rail: Job Boards -->
+    <aside class="right-rail">
+      <div class="rail-card">
+        <h3>Job Boards</h3>
+        <p class="muted rail-note">Opens in a new tab.</p>
+        <div class="rail-links">
+          <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener">LinkedIn Jobs</a>
+          <a href="https://www.indeed.com/" target="_blank" rel="noopener">Indeed</a>
+          <a href="https://www.glassdoor.com/Job/index.htm" target="_blank" rel="noopener">Glassdoor</a>
+          <a href="https://www.ziprecruiter.com/" target="_blank" rel="noopener">ZipRecruiter</a>
+          <a href="https://www.monster.com/" target="_blank" rel="noopener">Monster</a>
+          <a href="https://www.usajobs.gov/" target="_blank" rel="noopener">USAJOBS</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+=======
+      <button id="test-paid" class="btn primary" style="margin-top:0.75rem;width:100%;">Test Paid Features (Unlock Automated)</button>
+      <button id="cancel-upgrade" class="btn secondary" style="margin-top:0.5rem;width:100%;">Continue with Free (Close & use app)</button>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badge">Manual free · Automated paid</div>
+        <h1>Clarity for every application.</h1>
+        <p class="hero-sub">Track manually for free, or upgrade to automated resume delivery with ATS vs. human email detection.</p>
+        <div class="hero-actions">
+          <a href="#manual" class="btn primary">Start free (Manual)</a>
+          <a href="#pricing" class="btn secondary">See Automated plans</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Pricing</h2>
+          <p class="section-lead">Manual is free forever. Automated unlocks resume delivery simulation and delivery-method insights.</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="card pricing-card">
+            <h3>Manual</h3>
+            <div class="price">Free</div>
+            <ul>
+              <li>Application tracker</li>
+              <li>Human signal builder</li>
+              <li>Resume upload (local)</li>
+              <li>Legitimacy & skills tools</li>
+            </ul>
+            <a href="#manual" class="btn secondary">Use Manual</a>
+          </div>
+          <div class="card pricing-card featured">
+            <h3>Automated</h3>
+            <div class="price">From $19/mo</div>
+            <ul>
+              <li>Everything in Manual</li>
+              <li>Simulated resume delivery to company sites</li>
+              <li>ATS / AI keyword vs. human email detection</li>
+              <li>Email address when available</li>
+              <li>Delivery confidence notes</li>
+            </ul>
+            <button id="upgrade-from-pricing" class="btn primary">Upgrade</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Dashboard</h2>
+          <p class="section-lead" id="welcome-text">Log in to personalize.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <strong id="app-count">0</strong>
+            <span>Applications tracked</span>
+          </div>
+          <div class="stat-card">
+            <strong id="signal-status">Not set</strong>
+            <span>Human signal</span>
+          </div>
+          <div class="stat-card">
+            <strong id="resume-status">None</strong>
+            <span>Resume</span>
+          </div>
+          <div class="stat-card">
+            <strong id="plan-status">Free</strong>
+            <span>Current plan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manual -->
+    <section id="manual" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Manual (Free)</h2>
+          <p class="section-lead">Track applications yourself. No automation.</p>
+        </div>
+
+        <form id="app-form" class="card form-card">
+          <div class="form-row">
+            <div class="field">
+              <label for="company">Company</label>
+              <input type="text" id="company" required placeholder="Acme Corp">
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <input type="text" id="role" required placeholder="Product Manager">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="applied">Date applied</label>
+              <input type="date" id="applied" required>
+            </div>
+            <div class="field">
+              <label for="source">Source</label>
+              <select id="source">
+                <option value="linkedin">LinkedIn</option>
+                <option value="indeed">Indeed</option>
+                <option value="company">Company site</option>
+                <option value="referral">Referral</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn primary">Add application</button>
+        </form>
+
+        <div id="app-list" class="app-list"></div>
+
+        <div class="card" style="margin-top:2rem;">
+          <h3>Human Signal</h3>
+          <p class="muted" style="margin-bottom:1rem;font-size:0.95rem;">Optional short video helps you stand out. Most recruiters prefer under 60 seconds.</p>
+          <div class="grid-2" style="margin-top:1rem;">
+            <div>
+              <div class="field">
+                <label for="headline">Headline</label>
+                <input type="text" id="headline" placeholder="Ops leader who cut wait times 20%">
+              </div>
+              <div class="field">
+                <label for="proof">Proof of work</label>
+                <textarea id="proof" rows="3" placeholder="Reduced average time from 42 to 28 minutes..."></textarea>
+              </div>
+
+              <div class="video-section">
+                <label>Optional intro video</label>
+                <div class="video-controls">
+                  <button type="button" id="start-record" class="btn secondary small">Record with webcam</button>
+                  <button type="button" id="stop-record" class="btn secondary small" hidden>Stop recording</button>
+                  <label class="btn secondary small" style="cursor:pointer;">
+                    Upload video
+                    <input type="file" id="video-upload" accept="video/*" hidden>
+                  </label>
+                </div>
+                <div id="recording-status" class="muted" style="font-size:0.85rem;margin-top:0.5rem;"></div>
+                <video id="video-preview" controls style="width:100%;max-height:200px;border-radius:8px;margin-top:0.75rem;display:none;background:#000;"></video>
+                <button type="button" id="clear-video" class="btn secondary small" style="margin-top:0.5rem;" hidden>Remove video</button>
+              </div>
+
+              <button id="save-signal" class="btn primary" style="margin-top:1rem;">Save signal</button>
+            </div>
+            <div id="signal-preview" class="signal-preview">
+              <p class="muted">Preview appears here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+          <h3>Resume (local only)</h3>
+          <div class="field">
+            <label for="resume-file">Upload resume</label>
+            <input type="file" id="resume-file" accept=".pdf,.doc,.docx,.txt">
+          </div>
+          <div id="resume-info" class="muted">No resume uploaded.</div>
+          <button id="clear-resume" class="btn secondary" style="margin-top:0.75rem;" hidden>Remove</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automated -->
+    <section id="automated" class="section alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Automated</h2>
+          <p class="section-lead">Simulate resume delivery and see whether it likely hits an ATS/AI keyword filter or a human email.</p>
+        </div>
+
+        <div id="automated-locked" class="card locked-card">
+          <h3>Automated is a paid feature</h3>
+          <p class="muted">Upgrade to unlock simulated delivery, ATS vs. email detection, and email addresses when available.</p>
+          <button id="upgrade-from-locked" class="btn primary" style="margin-top:1rem;">View plans</button>
+        </div>
+
+        <div id="automated-unlocked" hidden>
+          <form id="auto-form" class="card form-card">
+            <div class="form-row">
+              <div class="field">
+                <label for="auto-company">Company</label>
+                <input type="text" id="auto-company" required placeholder="Acme Corp">
+              </div>
+              <div class="field">
+                <label for="auto-role">Role</label>
+                <input type="text" id="auto-role" required placeholder="Software Engineer">
+              </div>
+            </div>
+            <div class="field">
+              <label for="auto-url">Company career page URL (optional)</label>
+              <input type="url" id="auto-url" placeholder="https://company.com/careers">
+            </div>
+            <button type="submit" class="btn primary">Simulate resume delivery</button>
+          </form>
+          <div id="auto-result" class="result-box" hidden></div>
+          <div id="auto-history" class="app-list" style="margin-top:1.5rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tools</h2>
+          <p class="section-lead">Available on both plans.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Job Legitimacy Check</h3>
+            <div class="field">
+              <label for="job-text">Paste job posting</label>
+              <textarea id="job-text" rows="5" placeholder="Paste the job posting..."></textarea>
+            </div>
+            <button id="check-btn" class="btn primary">Check</button>
+            <div id="check-result" class="result-box" hidden></div>
+          </div>
+          <div class="card">
+            <h3>Skills Gap</h3>
+            <div class="field">
+              <label for="target-role">Target role</label>
+              <select id="target-role">
+                <option value="pm">Product Manager</option>
+                <option value="ops">Operations Manager</option>
+                <option value="data">Data Analyst</option>
+              </select>
+            </div>
+            <button id="gap-btn" class="btn primary">Show gap</button>
+            <div id="gap-result" class="result-box" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">◆</span>
+<<<<<<< HEAD
+        <span>CAREER PULSE</span>
+=======
+        <span>SignalPath</span>
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+      </div>
+      <p>Manual free · Automated paid. All data stays local in this demo.</p>
+    </div>
+  </footer>
+
+<<<<<<< HEAD
+  <div id="toast" class="toast"></div>
+=======
+>>>>>>> 61de49e66cf10ba1c738edff412fe49b8e6738b6
+  <script src="script.js"></script>
+</body>
+</html>
